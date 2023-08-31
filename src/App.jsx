@@ -25,7 +25,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header setSearchKey={setSearchKey} setCategory={setCategory} setPage={setPage}/>
+      <Header setSearchKey={setSearchKey} setCategory={setCategory} setPage={setPage} category={category}/>
 
       <Routes>
         <Route

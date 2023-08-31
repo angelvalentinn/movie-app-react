@@ -2,7 +2,7 @@ import logo from '../assets/logo.png';
 import logoTMBD from '../assets/logoTMBD.svg'
 import { Link } from 'react-router-dom';
 
-const Header = ({setSearchKey, setCategory, setPage}) => {
+const Header = ({setSearchKey, setCategory, setPage, category}) => {
 
     const handleLi = (cat) => {
         setSearchKey('')
@@ -27,9 +27,9 @@ const Header = ({setSearchKey, setCategory, setPage}) => {
 
                 <nav>
                     <ul className="flex gap-8 items-center font-bold text-red-500">
-                        <Link to={'/'}><li className="cursor-pointer hover:text-primary transition-all ease-linear uppercase">Home</li></Link>
-                        <Link to={'/'}><li className="cursor-pointer hover:text-primary transition-all ease-linear uppercase"  onClick={() => handleLi('movie')}>Movies</li></Link>
-                        <Link to={'/'}><li className="cursor-pointer hover:text-primary transition-all ease-linear uppercase"  onClick={() => handleLi('tv')}>Series</li></Link>
+                        <Link to={'/'}><li className={`cursor-pointer hover:text-primary transition-all ease-linear uppercase `}>Home</li></Link>
+                        <Link to={'/'}><li className={`cursor-pointer hover:text-primary transition-all ease-linear uppercase`}  onClick={() => handleLi('movie')}>Movies</li></Link>
+                        <Link to={'/'}><li className={`cursor-pointer hover:text-primary transition-all ease-linear uppercase`}  onClick={() => handleLi('tv')}>Series</li></Link>
                     </ul>
                 </nav>
 

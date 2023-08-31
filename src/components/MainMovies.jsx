@@ -23,7 +23,7 @@ const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, se
             <main className="relative flex flex-col gap-6 items-center justify-center py-12 bg-secundary min-h-[500px]">
                 <div className='flex flex-col items-center justify-around w-full absolute top-8 px-8'>
 
-                    <form onSubmit={handleForm} className=''>
+                    <form onSubmit={handleForm} >
                         <span className="relative flex items-center">
                             <i className="bi bi-search cursor-pointer absolute right-2 text-black_text border-l border-white_text pl-2"></i>
                             <input value={valueInput} onChange={(e) => setValueInput(e.target.value)} type="text" className="pl-2 py-1 rounded-sm outline-none text-black_text  pr-12 w-[300px]" placeholder={`Busca tu ${category == 'movie' ? 'peli' : 'serie'}...`} />
@@ -33,7 +33,7 @@ const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, se
 
                 <div className='flex flex-col gap-4 justify-center items-center relative pt-12 px-4 lg:px-14 self-start'>
                     <button className='button-categoria self-start' onClick={() => setActiveCategory(!activeCategory)}>
-                        <p>Ver Categorías</p>
+                        <p>Genero de películas</p>
                         <svg strokeWidth="4" stroke="currentColor" viewBox="0 0 24 24" fill="none" className="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinejoin="round" strokeLinecap="round"></path>
                         </svg>

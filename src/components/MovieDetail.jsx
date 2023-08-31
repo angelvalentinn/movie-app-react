@@ -27,11 +27,11 @@ const MovieDetail = () => {
     useEffect(() => {
         movie && fetchingMovies(null, setCasts, null, 'movie', `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiConfig.API_KEY}`);
     }, [movie])
-    console.log(casts);
+
     return (
         <>
             {movie ? <main
-                className="overflow-hidden flex flex-col relative z-10 before:absolute before:inset-0 before:bg-hover_black2 w-full bg-center  bg-no-repeat bg-cover min-h-full pb-12 sm:min-h-0"
+                className="overflow-hidden  flex flex-col relative z-10 before:absolute before:inset-0 before:bg-hover_black2 w-full bg-center  bg-no-repeat bg-cover min-h-full pb-12 sm:min-h-0"
                 style={{
                     backgroundImage: `url(${apiConfig.IMAGE_ORIGINAL(
                         movie.backdrop_path || movie.poster_path

@@ -1,3 +1,7 @@
+* {
+  scroll-behavior: smooth;
+}
+
 .loader {
   width: 60px;
   height: 60px;
@@ -160,4 +164,18 @@
     position: relative;
     width: 15px;
     transition-delay: 0.2s;
+  }
+
+  *::-webkit-scrollbar {
+    width: 12px;              
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #292c3e;        
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #c01111;    
+    border-radius: 20px;       
+    border: 3px solid #292c3e;  
   }
