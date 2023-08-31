@@ -12,6 +12,8 @@ export default {
       black: '#000',
       white_text: '#eee',
       white: '#fff',
+      hover_black: '#000c',
+      hover_black2: '#001b',
       red: '#c01111',
       gray_text: '#a1a1a1'
     },

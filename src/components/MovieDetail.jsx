@@ -11,6 +11,8 @@ const MovieDetail = () => {
     const [movie, setMovie] = useState(null);
     const [playing, setPlaying] = useState(false);
     const [trailer, setTrailer] = useState(null);
+    const [viewCasts, setViewCasts] = useState(false)
+    const [casts, setCasts] = useState(null);
 
     useEffect(() => {
         fetchingMovies(Number(id), setMovie);
@@ -22,10 +24,14 @@ const MovieDetail = () => {
         }
     }, [id]);
 
+    useEffect(() => {
+        movie && fetchingMovies(null, setCasts, null, 'movie', `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiConfig.API_KEY}`);
+    }, [movie])
+    console.log(casts);
     return (
         <>
             {movie ? <main
-                className="flex flex-col relative z-10 after:-z-10 after:absolute after:bg-gradient-to-tr after:inset-0  after:from-black  w-full bg-center  bg-no-repeat bg-cover min-h-full pb-12 sm:min-h-0"
+                className="overflow-hidden flex flex-col relative z-10 before:absolute before:inset-0 before:bg-hover_black2 w-full bg-center  bg-no-repeat bg-cover min-h-full pb-12 sm:min-h-0"
                 style={{
                     backgroundImage: `url(${apiConfig.IMAGE_ORIGINAL(
                         movie.backdrop_path || movie.poster_path
@@ -52,13 +58,20 @@ const MovieDetail = () => {
                             }
                         </ul>
                         <p className=" lg:w-[80%] lg:text-[1.2rem]">{movie.overview}</p>
-                        {!playing && trailer ?
-                            <button className="button max-w-max" onClick={() => setPlaying(true)}>
-                                Ver trailer
-                            </button>
-                            :
-                            !playing && !trailer && <p className="border-b w-max">Lo siento, trailer no disponible 😕</p>
-                        }
+
+                        <div className="flex items-center gap-4">
+                            {
+                                !playing && trailer ?
+                                    <button className="button max-w-max" onClick={() => setPlaying(true)}>
+                                        Ver trailer
+                                    </button>
+                                    : !playing && !trailer && <p className="border-b w-max">Lo siento, trailer no disponible 😕</p>
+                            }
+                            {casts && <button onClick={() => setViewCasts(true)} className="button max-w-max bg-primary text-white">
+                                Ver Actores
+                            </button>}
+                        </div>
+
                     </div>
 
                 </section>
@@ -86,6 +99,20 @@ const MovieDetail = () => {
                             }}
                         />
                     </article>
+                }
+                {viewCasts && <section className="slide-in-right absolute inset-0 bg-hover_black overflow-y-scroll py-8">
+                    <i onClick={() => setViewCasts(false)} className="absolute right-8 top-2 bi bi-x text-6xl text-red cursor-pointer border-2 border-red rounded-full transition linear hover:bg-red hover:text-white"></i>
+                    <article className="pt-10 flex flex-wrap justify-center gap-10">
+                        {casts && casts.cast.map(actor => {
+                            return (
+                                <div className="flex flex-col items-center justify-center gap-2">
+                                    <img className="h-[250px] w-[200px] rounded-[50%]" src={apiConfig.IMAGE_ORIGINAL(actor.profile_path)} alt={actor.character} />
+                                    <p className="text-white text-xl">{actor.character}</p>
+                                </div>
+                            )
+                        })}
+                    </article>
+                </section>
                 }
             </main>
                 : <main className="bg-secundary flex justify-center items-center min-h-[500px]"><Loader /></main>

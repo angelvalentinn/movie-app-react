@@ -1,7 +1,7 @@
 import { options } from './api.options.js';
 import { apiConfig } from './api.config.js'
 
-export const fetchingMovies = async (currentSearchKey, setFunction, page = null, cat = 'movie' ) => {
+export const fetchingMovies = async (currentSearchKey, setFunction, page = null, cat = 'movie', url = false ) => {
     try {
         let type;
         if(typeof currentSearchKey === 'number'){ 
@@ -12,7 +12,8 @@ export const fetchingMovies = async (currentSearchKey, setFunction, page = null,
             : `discover/${cat}?page=${page}&append_to_response=videos`;
         }
         
-        const URL = `${apiConfig.API_URL}/${type}&${apiConfig.API_PARAMS}&api_key=${apiConfig.API_KEY}`;
+        const URL = url ? url :`${apiConfig.API_URL}/${type}&${apiConfig.API_PARAMS}&api_key=${apiConfig.API_KEY}`;
+        
         const response = await fetch(URL, options);
         const data = await response.json();
         setFunction(data);

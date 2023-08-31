@@ -40,6 +40,7 @@ function App() {
               setValueInput={setValueInput}
               searchKey={searchKey}
               category={category}
+              setMovies={setMovies}
             />
           }
         />

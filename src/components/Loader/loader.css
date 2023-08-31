@@ -92,3 +92,72 @@
       opacity: 1;
     }
   }
+
+  .button-categoria {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+  }
+  
+  .button-categoria {
+    --primary-color: #000;
+    --hovered-color: #c84747;
+    position: relative;
+    display: flex;
+    font-weight: 600;
+    font-size: 20px;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .button-categoria p {
+    margin: 0;
+    position: relative;
+    font-size: 20px;
+    color: var(--primary-color)
+  }
+  
+  .button-categoria::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    left: 0;
+    bottom: -7px;
+    background: var(--hovered-color);
+    height: 2px;
+    transition: 0.3s ease-out;
+  }
+  
+  .button-categoria p::before {
+    position: absolute;
+  /*   box-sizing: border-box; */
+    content: "";
+    width: 0%;
+    inset: 0;
+    color: var(--hovered-color);
+    overflow: hidden;
+    transition: 0.3s ease-out;
+  }
+  
+  .button-categoria:hover::after {
+    width: 100%;
+  }
+  
+  .button-categoria:hover p::before {
+    width: 100%;
+  }
+  
+  .button-categoria:hover svg {
+    transform: translateY(4px) rotate(90deg);
+    color: var(--hovered-color)
+  }
+  
+  .button-categoria svg {
+    color: var(--primary-color);
+    transition: 0.2s;
+    transform: rotate(90deg);
+    position: relative;
+    width: 15px;
+    transition-delay: 0.2s;
+  }

@@ -7,9 +7,9 @@ const Footer = () => {
                 </p>
                 <div className="flex justify-center items-center gap-12">
                     <a className="text-2xl  linear hover:text-primary hover:scale-110 transition linear" href="https://www.linkedin.com/in/%C3%A1ngel-valent%C3%ADn-altieri-a319a0256/" target="_blank"><i className="bi bi-linkedin"></i></a>
-                    <a className="text-2xl  linear hover:text-red hover:scale-110 transition linear" href="https://github.com/angelvalentinn" target="_blank"><i class="bi bi-github"></i></a>
-                    <a className="text-2xl  linear hover:text-primary hover:scale-110 transition linear" href="https://www.instagram.com/angel_altieri_/" target="_blank"><i class="bi bi-instagram"></i></a>
-                    <a className="text-2xl  linear hover:text-red hover:scale-110 transition linear" href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSKkHhksQChtdvjwPXtGdwvffSTTVDXZJWLNFStrGBvjCzcKPFQddMpMMzQRKLBwzDDcphhN" target="_blank"><i class="bi bi-envelope"></i></a>
+                    <a className="text-2xl  linear hover:text-red hover:scale-110 transition linear" href="https://github.com/angelvalentinn" target="_blank"><i className="bi bi-github"></i></a>
+                    <a className="text-2xl  linear hover:text-primary hover:scale-110 transition linear" href="https://www.instagram.com/angel_altieri_/" target="_blank"><i className="bi bi-instagram"></i></a>
+                    <a className="text-2xl  linear hover:text-red hover:scale-110 transition linear" href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSKkHhksQChtdvjwPXtGdwvffSTTVDXZJWLNFStrGBvjCzcKPFQddMpMMzQRKLBwzDDcphhN" target="_blank"><i className="bi bi-envelope"></i></a>
                 </div>
             </article>
         </footer>
