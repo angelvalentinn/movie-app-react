@@ -7,6 +7,7 @@ También, las películas se pueden filtrar por géneros. Debajo de la lista se e
 * <img src="https://img.shields.io/badge/React-087ea4?style=for-the-badge&logo=React&logoColor=white">
 * <img src="https://img.shields.io/badge/Vite-8f6efe?style=for-the-badge&logo=Vite&logoColor=white">
 * <img src="https://img.shields.io/badge/tailwind-0ed3cf?&style=for-the-badge&logo=tailwindcss&logoColor=white">
+* <img src="https://img.shields.io/badge/-333?&style=for-the-badge&logo=API TMBD&logoColor=white">
 
 ### Recursos utilizados:
 - **react-router-dom**
