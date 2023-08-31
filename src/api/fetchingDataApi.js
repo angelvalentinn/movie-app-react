@@ -3,6 +3,7 @@ import { apiConfig } from './api.config.js'
 
 export const fetchingMovies = async (currentSearchKey, setFunction, page = null, cat = 'movie', url = false ) => {
     try {
+        
         let type;
         if(typeof currentSearchKey === 'number'){ 
             type = `${cat}/${currentSearchKey}?append_to_response=videos`;

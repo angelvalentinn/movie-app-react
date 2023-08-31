@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import Loader from "./Loader/Loader";
+import Loader from "./Loader";
 import { apiConfig } from "../api/api.config";
 import { fetchingMovies } from "../api/fetchingDataApi";
 import { useParams } from "react-router-dom";
 import YouTube from 'react-youtube';
+import BtnClose from "./BtnClose";
 
 const MovieDetail = () => {
 
@@ -16,22 +17,22 @@ const MovieDetail = () => {
 
     useEffect(() => {
         fetchingMovies(Number(id), setMovie);
+    }, [id]);
+
+    useEffect(() => {
+        movie && fetchingMovies(null, setCasts, null, 'movie', `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiConfig.API_KEY}`);
         if (movie && movie.videos.results) {
             const trailer = movie.videos.results.find(
                 (vid) => vid.name.includes("Tráiler Oficial" || "Trailer" || "Tráiler" || "Teaser Tráiler oficial" || "Official Trailer")
             );
             setTrailer(trailer ? trailer : movie.videos.results[0]);
         }
-    }, [id]);
-
-    useEffect(() => {
-        movie && fetchingMovies(null, setCasts, null, 'movie', `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiConfig.API_KEY}`);
     }, [movie])
 
     return (
         <>
             {movie ? <main
-                className="overflow-hidden  flex flex-col relative z-10 before:absolute before:inset-0 before:bg-hover_black2 w-full bg-center  bg-no-repeat bg-cover min-h-full pb-12 sm:min-h-0"
+                className="overflow-hidden  flex flex-col relative z-10 before:absolute before:inset-0 before:bg-hover_black2 before: w-full bg-center  bg-no-repeat bg-cover min-h-full pb-12 sm:min-h-0"
                 style={{
                     backgroundImage: `url(${apiConfig.IMAGE_ORIGINAL(
                         movie.backdrop_path || movie.poster_path
@@ -59,15 +60,15 @@ const MovieDetail = () => {
                         </ul>
                         <p className=" lg:w-[80%] lg:text-[1.2rem]">{movie.overview}</p>
 
-                        <div className="flex items-center gap-4">
+                        <div className="flex flex-wrap items-center gap-4">
                             {
                                 !playing && trailer ?
-                                    <button className="button max-w-max" onClick={() => setPlaying(true)}>
+                                    <button className="border-2 border-primary rounded-full py-3 px-6 text-primary font-semibold hover:bg-primary transition-all linear duration-300 hover:text-white hover:scale-110" onClick={() => setPlaying(true)}>
                                         Ver trailer
                                     </button>
                                     : !playing && !trailer && <p className="border-b w-max">Lo siento, trailer no disponible 😕</p>
                             }
-                            {casts && <button onClick={() => setViewCasts(true)} className="button max-w-max bg-primary text-white">
+                            {casts && <button onClick={() => setViewCasts(true)} className="border-2 border-primary bg-primary rounded-full py-3 px-6 text-white font-semibold hover:bg-transparent transition-all linear duration-300 hover:text-primary  hover:scale-110">
                                 Ver Actores
                             </button>}
                         </div>
@@ -77,8 +78,8 @@ const MovieDetail = () => {
                 </section>
 
                 {
-                    playing && <article className="flex flex-col gap-2">
-                        <button className="self-end mr-6 bg-red border-red text-white hover:border-primary hover:text-white button" onClick={() => setPlaying(false)}>Cerrar</button>
+                    playing && <article className="flex flex-col gap-2 z-10">
+                        <BtnClose setFunction={setPlaying} styles={"self-end mr-6 bg-red border-2  border-red text-white rounded-full  bi bi-x text-6xl cursor-pointer transition linear hover:bg-transparent  hover:text-red"}></BtnClose>
                         <YouTube
                             videoId={trailer.key}
                             className="reproductor container"
@@ -101,12 +102,12 @@ const MovieDetail = () => {
                     </article>
                 }
                 {viewCasts && <section className="slide-in-right absolute inset-0 bg-hover_black overflow-y-scroll py-8">
-                    <i onClick={() => setViewCasts(false)} className="absolute right-8 top-2 bi bi-x text-6xl text-red cursor-pointer border-2 border-red rounded-full transition linear hover:bg-red hover:text-white"></i>
+                    <BtnClose setFunction={setViewCasts} styles={"absolute right-8 top-2 bi bi-x text-6xl text-red cursor-pointer border-2 border-red rounded-full transition linear hover:bg-red hover:text-white"}></BtnClose>
                     <article className="pt-10 flex flex-wrap justify-center gap-10">
                         {casts && casts.cast.map(actor => {
                             return (
-                                <div className="flex flex-col items-center justify-center gap-2">
-                                    <img className="h-[250px] w-[200px] rounded-[50%]" src={apiConfig.IMAGE_ORIGINAL(actor.profile_path)} alt={actor.character} />
+                                <div key={actor.id} className="flex flex-col items-center justify-center gap-2">
+                                    {actor.profile_path && <img className="h-[250px] w-[200px] rounded-[50%]" src={apiConfig.IMAGE_ORIGINAL(actor.profile_path)} alt={actor.character} />}
                                     <p className="text-white text-xl">{actor.character}</p>
                                 </div>
                             )

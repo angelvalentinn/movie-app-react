@@ -15,6 +15,7 @@ export default {
       hover_black: '#000c',
       hover_black2: '#001b',
       red: '#c01111',
+      transparent: 'transparent',
       gray_text: '#a1a1a1'
     },
     fontFamily: {

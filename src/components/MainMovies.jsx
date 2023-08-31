@@ -1,4 +1,4 @@
-import Loader from './Loader/Loader'
+import Loader from './Loader'
 import { apiConfig } from '../api/api.config.js'
 import { Link } from 'react-router-dom'
 import { fetchingMovies } from '../api/fetchingDataApi'
@@ -25,7 +25,7 @@ const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, se
 
                     <form onSubmit={handleForm} >
                         <span className="relative flex items-center">
-                            <i className="bi bi-search cursor-pointer absolute right-2 text-black_text border-l border-white_text pl-2"></i>
+                            <button type='submit'><i className="bi bi-search cursor-pointer absolute right-2 top-2/4 -translate-y-2/4 text-black border-l border-white_text pl-2"></i></button>
                             <input value={valueInput} onChange={(e) => setValueInput(e.target.value)} type="text" className="pl-2 py-1 rounded-sm outline-none text-black_text  pr-12 w-[300px]" placeholder={`Busca tu ${category == 'movie' ? 'peli' : 'serie'}...`} />
                         </span>
                     </form>
@@ -63,7 +63,8 @@ const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, se
                         })
                     }
                 </section>
-                {searchKey == '' && <section className="absolute bottom-[20px] flex gap-12 items-center border-2 rounded-lg justify-self-end">
+                {searchKey == '' && 
+                <section className="absolute bottom-[20px] flex gap-12 items-center border-2 rounded-lg justify-self-end">
                     <i onClick={() => page > 1 && setPage(page - 1)} className={`${page == 1 && 'opacity-20'} bi bi-arrow-left cursor-pointer text-4xl px-2 border-r-2`}></i>
                     <span className="text-2xl font-semibold text-primary min-w-[20px] text-center">{page}</span>
                     <i onClick={() => movies != null && setPage(page + 1)} className="bi bi-arrow-right cursor-pointer text-4xl px-2 border-l-2"></i>
