@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import YouTube from 'react-youtube';
 import BtnClose from "./BtnClose";
 
-const MovieDetail = () => {
+const MovieDetail = ({category}) => {
 
     const { id } = useParams();
     const [movie, setMovie] = useState(null);
@@ -16,11 +16,11 @@ const MovieDetail = () => {
     const [casts, setCasts] = useState(null);
 
     useEffect(() => {
-        fetchingMovies(Number(id), setMovie);
+        fetchingMovies(Number(id), setMovie, null, category, null);
     }, [id]);
 
     useEffect(() => {
-        movie && fetchingMovies(null, setCasts, null, 'movie', `https://api.themoviedb.org/3/movie/${movie.id}/credits?api_key=${apiConfig.API_KEY}`);
+        movie && fetchingMovies(null, setCasts, null, null, `https://api.themoviedb.org/3/${category}/${movie.id}/credits?api_key=${apiConfig.API_KEY}`);
         if (movie && movie.videos.results) {
             const trailer = movie.videos.results.find(
                 (vid) => vid.name.includes("Tráiler Oficial" || "Trailer" || "Tráiler" || "Teaser Tráiler oficial" || "Official Trailer")

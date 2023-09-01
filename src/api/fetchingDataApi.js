@@ -14,7 +14,6 @@ export const fetchingMovies = async (currentSearchKey, setFunction, page = null,
         }
         
         const URL = url ? url :`${apiConfig.API_URL}/${type}&${apiConfig.API_PARAMS}&api_key=${apiConfig.API_KEY}`;
-        
         const response = await fetch(URL, options);
         const data = await response.json();
         setFunction(data);

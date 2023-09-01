@@ -15,7 +15,7 @@ function App() {
   const [searchKey, setSearchKey] = useState("");
 
   useEffect(() => {
-    fetchingMovies(searchKey, setMovies, page, category);
+    fetchingMovies(searchKey, setMovies, page, category, null);
   }, [page, searchKey, category]);
 
   const handleForm = (e) => {
@@ -42,10 +42,11 @@ function App() {
               searchKey={searchKey}
               category={category}
               setMovies={setMovies}
+              setCategory={setCategory}
             />
           }
         />
-        <Route path="/movieDetail/:id" element={<MovieDetail />} />
+        <Route path="/movieDetail/:id" element={<MovieDetail category={category}/>} />
       </Routes>
 
       <Footer />

@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom'
 import { fetchingMovies } from '../api/fetchingDataApi'
 import { useEffect, useState } from 'react'
 
-const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, searchKey, category, setMovies }) => {
+const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, searchKey, category, setMovies, setCategory }) => {
 
     const [generos, setGeneros] = useState(null);
     const [activeCategory, setActiveCategory] = useState(false);
     const handleUp = () => window.scrollTo(0, 0);
 
     useEffect(() => {
-        fetchingMovies(null, setGeneros, null, 'movie', `https://api.themoviedb.org/3/genre/movie/list?language=en&api_key=${apiConfig.API_KEY}`)
+        fetchingMovies(null, setGeneros, null, null, `https://api.themoviedb.org/3/genre/${category}/list?language=en&api_key=${apiConfig.API_KEY}`)
     }, [])
 
     const handleFetchCategory = (genre_id) => {
-        fetchingMovies(null, setMovies, null, 'movie', `https://api.themoviedb.org/3/discover/movie?with_genres=${genre_id}&api_key=${apiConfig.API_KEY}`)
+        fetchingMovies(null, setMovies, null, null, `https://api.themoviedb.org/3/discover/${category}?with_genres=${genre_id}&api_key=${apiConfig.API_KEY}`)
     }
 
     return (
@@ -26,19 +26,19 @@ const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, se
                     <form onSubmit={handleForm} >
                         <span className="relative flex items-center">
                             <button type='submit'><i className="bi bi-search cursor-pointer absolute right-2 top-2/4 -translate-y-2/4 text-black border-l border-white_text pl-2"></i></button>
-                            <input value={valueInput} onChange={(e) => setValueInput(e.target.value)} type="text" className="pl-2 py-1 rounded-sm outline-none text-black_text  pr-12 w-[300px]" placeholder={`Busca tu ${category == 'movie' ? 'peli' : 'serie'}...`} />
+                            <input onChange={(e) => setValueInput(e.target.value)} type="text" className="pl-2 py-1 rounded-sm outline-none text-black_text  pr-12 w-[300px]" placeholder={`Busca tu ${category == 'movie' ? 'peli' : 'serie'}...`} />
                         </span>
                     </form>
                 </div>
 
-                <div className='flex flex-col gap-4 justify-center items-center relative pt-12 px-4 lg:px-14 self-start'>
-                    <button className='button-categoria self-start' onClick={() => setActiveCategory(!activeCategory)}>
+                <div className='flex flex-col  gap-4 justify-center items-center relative pt-12 px-4 lg:px-14 self-center lg:self-start'>
+                    <button className='button-categoria lg:self-start' onClick={() => setActiveCategory(!activeCategory)}>
                         <p>Géneros de películas</p>
                         <svg strokeWidth="4" stroke="currentColor" viewBox="0 0 24 24" fill="none" className="h-6 w-6" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14 5l7 7m0 0l-7 7m7-7H3" strokeLinejoin="round" strokeLinecap="round"></path>
                         </svg>
                     </button>
-                    {activeCategory && <ul className={`slide-in-right grid grid-cols-2 gap-y-2 gap-x-2 content-center sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7`}>
+                    {activeCategory && <ul className={`slide-in-right grid  grid-cols-2 gap-y-2 gap-x-2 content-center sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7`}>
                         {
                             generos && generos.genres.map(gen => {
                                 return (
