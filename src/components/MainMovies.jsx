@@ -42,7 +42,7 @@ const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, se
                         {
                             generos && generos.genres.map(gen => {
                                 return (
-                                    <li onClick={() => handleFetchCategory(gen.id)} key={gen.id} className='justify-center min-w-[120px] h-max text-sm border-black rounded-full py-[3px] px-6 flex items-center bg-black text-white_text cursor-pointer hover:scale-105 hover:skew-y-2 transition linear hover:shadow-md hover:shadow-black'>{gen.name}</li>
+                                    <li onClick={() => handleFetchCategory(gen.id)} key={gen.id} className='justify-center min-w-[120px] h-max text-sm whitespace-nowrap border-black rounded-full py-[3px] px-6 flex items-center bg-black text-white_text cursor-pointer hover:scale-105 hover:skew-y-2 transition linear hover:shadow-md hover:shadow-black'>{gen.name}</li>
                                 )
                             })
                         }
