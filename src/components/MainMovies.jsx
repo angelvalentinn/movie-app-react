@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { fetchingMovies } from '../api/fetchingDataApi'
 import { useEffect, useState } from 'react'
 
-const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, searchKey, category, setMovies, setCategory }) => {
+const Main = ({ handleForm, setValueInput , movies, setPage, page, searchKey, category, setMovies }) => {
 
     const [generos, setGeneros] = useState(null);
     const [activeCategory, setActiveCategory] = useState(false);
@@ -12,11 +12,12 @@ const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, se
 
     useEffect(() => {
         fetchingMovies(null, setGeneros, null, null, `https://api.themoviedb.org/3/genre/${category}/list?language=en&api_key=${apiConfig.API_KEY}`)
-    }, [generos])
+    }, [category])
 
     const handleFetchCategory = (genre_id) => {
         fetchingMovies(null, setMovies, null, null, `https://api.themoviedb.org/3/discover/${category}?with_genres=${genre_id}&api_key=${apiConfig.API_KEY}`)
     }
+
 
     return (
         <>
@@ -56,7 +57,7 @@ const Main = ({ handleForm, setValueInput, valueInput, movies, setPage, page, se
                             return (
                                 <Link key={movie.id} to={`movieDetail/${movie.id}`}>
                                     <article className="flex flex-col gap-2 items-center cursor-pointer">
-                                        <img className="rounded-3xl max-h-[270x] max-w-[270px]" src={apiConfig.IMAGE_ORIGINAL(movie.poster_path || movie.backdrop_path)} alt={`Imágen de la pelicula ${movie.title}`} />
+                                        <img loading='lazy' className="rounded-3xl max-h-[270x] max-w-[270px]" src={apiConfig.IMAGE_ORIGINAL(movie.poster_path || movie.backdrop_path)} alt={`Imágen de la pelicula ${movie.title}`} />
                                     </article>
                                 </Link>
                             )
